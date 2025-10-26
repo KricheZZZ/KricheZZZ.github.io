@@ -23,7 +23,7 @@ body {
 
 /* Header */
 #header {
-    background-color: #ffa500;
+    background-color: #8B4513;
     width: 100%;
     padding: 10px 0;
 }
@@ -45,11 +45,12 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
+    color: #fff;
 }
 
 /* Navigation */
 #navigation {
-    background-color: #ff8c00;
+    background-color: #A0522D;
     width: 100%;
     padding: 10px 0;
 }
@@ -66,7 +67,7 @@ body {
 }
 
 .nav-menu a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
     display: block;
@@ -75,7 +76,7 @@ body {
 }
 
 .nav-menu a:hover {
-    color: #555;
+    color: #D2B48C;
 }
 
 /* Main Content */
@@ -106,7 +107,7 @@ body {
 .links-section,
 .table-section,
 .form-section {
-    background-color: #f59fc0;
+    background-color: #D2B48C;
     padding: 20px;
     border-radius: 5px;
 }
@@ -132,7 +133,7 @@ body {
 }
 
 .links-list a:hover {
-    color: #555;
+    color: #8B4513;
 }
 
 .links-list ol {
@@ -154,17 +155,17 @@ body {
 }
 
 .data-table th {
-    background-color: #e91e63;
+    background-color: #8B4513;
     color: white;
     font-weight: bold;
 }
 
 .data-table tbody tr:nth-child(even) {
-    background-color: #ffb74d;
+    background-color: #DEB887;
 }
 
 .data-table tbody tr:nth-child(odd) {
-    background-color: #f59fc0;
+    background-color: #D2B48C;
 }
 
 /* Form */
@@ -207,7 +208,7 @@ body {
 }
 
 .submit-btn {
-    background-color: #e91e63;
+    background-color: #8B4513;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -218,15 +219,16 @@ body {
 }
 
 .submit-btn:hover {
-    background-color:#e67e00;
+    background-color: #654321;
 }
 
 /* Footer */
 #footer {
-    background-color: #ada8a6;
+    background-color: #A0522D;
     width: 100%;
     padding: 20px 0;
     text-align: center;
+    color: #fff;
 }
 
 /* Tablet and Desktop Styles */
