@@ -23,7 +23,7 @@ body {
 
 /* Header */
 #header {
-    background-color: #f59fc0;
+    background-color: #ffa500;
     width: 100%;
     padding: 10px 0;
 }
@@ -49,7 +49,7 @@ body {
 
 /* Navigation */
 #navigation {
-    background-color: #ada8a6;
+    background-color: #ff8c00;
     width: 100%;
     padding: 10px 0;
 }
@@ -160,7 +160,7 @@ body {
 }
 
 .data-table tbody tr:nth-child(even) {
-    background-color: #f8bbd0;
+    background-color: #ffb74d;
 }
 
 .data-table tbody tr:nth-child(odd) {
@@ -218,7 +218,7 @@ body {
 }
 
 .submit-btn:hover {
-    background-color: #c2185b;
+    background-color:#e67e00;
 }
 
 /* Footer */
