@@ -1,0 +1,337 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Mobile First Styles */
+
+/* Header */
+#header {
+    background-color: #f59fc0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Navigation */
+#navigation {
+    background-color: #ada8a6;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-menu li {
+    text-align: center;
+}
+
+.nav-menu a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #555;
+}
+
+/* Main Content */
+#main-content {
+    padding: 20px 0;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Mobile order: Table first, then links */
+.table-section {
+    order: -1;
+}
+
+.links-section {
+    order: 0;
+}
+
+.form-section {
+    order: 1;
+}
+
+/* Sections */
+.links-section,
+.table-section,
+.form-section {
+    background-color: #f59fc0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.links-section h2,
+.table-section h2,
+.form-section h2 {
+    margin-bottom: 15px;
+    color: #000;
+}
+
+/* Links List */
+.links-list {
+    list-style: none;
+    line-height: 1.8;
+}
+
+.links-list a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.links-list a:hover {
+    color: #555;
+}
+
+.links-list ol {
+    margin-left: 20px;
+}
+
+/* Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #e91e63;
+    color: white;
+    font-weight: bold;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f8bbd0;
+}
+
+.data-table tbody tr:nth-child(odd) {
+    background-color: #f59fc0;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.form-group fieldset legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.form-group label input[type="radio"] {
+    margin-right: 5px;
+}
+
+.submit-btn {
+    background-color: #e91e63;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #c2185b;
+}
+
+/* Footer */
+#footer {
+    background-color: #ada8a6;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+    /* Header */
+    .header-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .site-title {
+        margin-left: 20px;
+        font-size: 2rem;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 30px;
+    }
+
+    .nav-menu a {
+        padding: 8px 15px;
+    }
+
+    /* Content order for desktop */
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .table-section {
+        order: 0;
+    }
+    
+    .links-section {
+        order: -1;
+    }
+    
+    .form-section {
+        order: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0;
+    }
+    
+    .header-content {
+        padding: 10px 0;
+    }
+    
+    /* Navigation positioning for desktop */
+    #navigation .container {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .nav-menu {
+        gap: 40px;
+    }
+}
+
+/* Checkbox group styles */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    font-weight: normal;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+/* Responsive checkbox group */
+@media (min-width: 768px) {
+    .checkbox-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
