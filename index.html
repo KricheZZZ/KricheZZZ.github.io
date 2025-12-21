@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* ========== ОСНОВНЫЕ СТИЛИ И СБРОС ========== */
 * {
     margin: 0;
     padding: 0;
@@ -17,19 +16,18 @@
 }
 
 :root {
-    /* Темная цветовая схема с акцентами */
-    --primary-color: #0A2E0A;      /* Очень темный зеленый */
-    --primary-dark: #051905;       /* Почти черный зеленый */
-    --secondary-color: #1B5E20;    /* Темно-зеленый */
-    --accent-color: #2E7D32;       /* Средний зеленый */
-    --light-color: #121212;        /* Темный фон сайта */
-    --dark-color: #E0E0E0;         /* Светлый текст */
+    --primary-color: #0A2E0A;
+    --primary-dark: #051905;
+    --secondary-color: #1B5E20;
+    --accent-color: #2E7D32;
+    --light-color: #121212;
+    --dark-color: #E0E0E0;
     --text-color: #E0E0E0;
-    --border-color: #37474F;       /* Темно-серый для границ */
+    --border-color: #37474F;
     --shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
     --transition: all 0.3s ease;
     --border-radius: 16px;
-    --card-bg: #1E1E1E;           /* Темный фон карточек */
+    --card-bg: #1E1E1E;
 }
 
 html {
@@ -44,15 +42,8 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
 .section {
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 
 h1, h2, h3, h4 {
@@ -84,10 +75,6 @@ h2::after {
     border-radius: 2px;
 }
 
-h3 {
-    font-size: 1.4rem;
-}
-
 .section-title p {
     text-align: center;
     color: #B0BEC5;
@@ -96,15 +83,6 @@ h3 {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-}
-
-p {
-    margin-bottom: 1rem;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
 }
 
 .btn {
@@ -130,46 +108,30 @@ a {
     background: linear-gradient(135deg, var(--primary-color), #0A2E0A);
 }
 
-/* ========== HEADER / ШАПКА ========== */
+/* ========== HEADER ========== */
 header {
     position: relative;
     height: 100vh;
     min-height: 600px;
     color: white;
     overflow: hidden;
-    background: linear-gradient(135deg, #1B5E20, #0D3B0D);
 }
 
-.video-container {
-    display: none; /* Скрываем контейнер, используем фон header */
-}
-
-.overlay {
+.video-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, 
-        rgba(0, 0, 0, 0.7) 0%, 
-        rgba(0, 0, 0, 0.3) 40%, 
-        rgba(0, 0, 0, 0.7) 100%
-    );
+    z-index: -1;
+    overflow: hidden;
 }
 
-/* Запасное изображение */
-.backup-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.backup-image img {
+.video-background video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.7);
 }
 
 .overlay {
@@ -183,46 +145,10 @@ header {
         rgba(0, 0, 0, 0.3) 40%, 
         rgba(0, 0, 0, 0.7) 100%
     );
+    z-index: 1;
 }
 
-/* Улучшаем видимость текста */
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-    line-height: 1.2;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 35px;
-    color: rgba(255, 255, 255, 0.95);
-    max-width: 600px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-}
-
-/* Навигация */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    position: relative;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-}
-
-/* Делаем текст ярче на фоне */
-.hero .btn {
-    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-    font-size: 1.1rem;
-    padding: 16px 32px;
-}
-/* ========== NAVIGATION / НАВИГАЦИЯ ========== */
+/* ========== NAVIGATION ========== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -271,41 +197,6 @@ nav {
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--card-bg);
-    min-width: 180px;
-    box-shadow: var(--shadow);
-    border-radius: 10px;
-    padding: 10px 0;
-    list-style: none;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: var(--transition);
-    z-index: 100;
-    border: 1px solid var(--border-color);
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu a {
-    color: var(--text-color);
-    padding: 10px 20px;
-    display: block;
-}
-
-.dropdown-menu a:hover {
-    background-color: rgba(46, 125, 50, 0.1);
     color: var(--accent-color);
 }
 
@@ -410,7 +301,7 @@ nav {
     visibility: visible;
 }
 
-/* ========== HERO SECTION / ГЛАВНЫЙ БАННЕР ========== */
+/* ========== HERO SECTION ========== */
 .hero {
     position: absolute;
     bottom: 0;
@@ -435,23 +326,16 @@ nav {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.hero .btn {
-    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-    align-self: flex-start;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.hero .btn:hover {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    transform: translateY(-3px) scale(1.05);
-}
-
-/* ========== MENU SECTION / МЕНЮ ========== */
+/* ========== MENU SECTION ========== */
 .models-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
 .model-card {
@@ -541,7 +425,7 @@ nav {
     border-color: var(--accent-color);
 }
 
-/* ========== TABLE SECTION / ТАБЛИЦА ========== */
+/* ========== TABLE SECTION ========== */
 .table-container {
     overflow-x: auto;
     margin-top: 30px;
@@ -549,6 +433,9 @@ nav {
     box-shadow: var(--shadow);
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .performance-table {
@@ -580,11 +467,7 @@ nav {
     background-color: #252525;
 }
 
-.performance-table tbody tr:hover {
-    background-color: rgba(46, 125, 50, 0.1);
-}
-
-/* ========== GALLERY SECTION / СЛАЙДЕР-ГАЛЕРЕЯ ========== */
+/* ========== GALLERY SECTION ========== */
 .gallery-container {
     position: relative;
     margin: 40px auto 20px;
@@ -592,6 +475,7 @@ nav {
     overflow: hidden;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
+    max-width: 1200px;
 }
 
 .gallery-slider {
@@ -619,16 +503,6 @@ nav {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     color: white;
     padding: 20px;
-}
-
-.slide-content h3 {
-    color: white;
-    margin-bottom: 5px;
-}
-
-.slide-content p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
 }
 
 .gallery-controls {
@@ -688,7 +562,7 @@ nav {
     transform: scale(1.2);
 }
 
-/* ========== CALCULATOR SECTION / КАЛЬКУЛЯТОР ========== */
+/* ========== CALCULATOR SECTION ========== */
 .calculator {
     max-width: 800px;
     margin: 40px auto 0;
@@ -756,10 +630,6 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
 .options-group {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -779,12 +649,6 @@ input[type="range"]::-webkit-slider-thumb {
     accent-color: var(--accent-color);
 }
 
-.option-checkbox label {
-    font-weight: normal;
-    cursor: pointer;
-    color: var(--text-color);
-}
-
 .calculator-result {
     text-align: center;
     padding: 25px;
@@ -792,11 +656,6 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 12px;
     margin-top: 20px;
     border: 1px solid var(--border-color);
-}
-
-.calculator-result h3 {
-    margin-bottom: 10px;
-    color: white;
 }
 
 .total-price {
@@ -814,8 +673,7 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: 5px;
 }
 
-
-/* ========== CONTACT FORM / КОНТАКТНАЯ ФОРМА ========== */
+/* ========== CONTACT FORM ========== */
 .contact-form {
     max-width: 700px;
     margin: 40px auto 0;
@@ -828,13 +686,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 .contact-form .form-group {
     margin-bottom: 25px;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-color);
 }
 
 .contact-form input,
@@ -854,17 +705,6 @@ input[type="range"]::-webkit-slider-thumb {
 .contact-form textarea:focus {
     border-color: var(--accent-color);
     outline: none;
-}
-
-.contact-form textarea {
-    resize: vertical;
-}
-
-.contact-form .btn {
-    width: 100%;
-    padding: 18px;
-    font-size: 1.1rem;
-    margin-top: 10px;
 }
 
 .form-message {
@@ -890,7 +730,7 @@ input[type="range"]::-webkit-slider-thumb {
     display: block;
 }
 
-/* ========== FOOTER / ПОДВАЛ ========== */
+/* ========== FOOTER ========== */
 footer {
     background-color: #0A0A0A;
     color: white;
@@ -945,12 +785,6 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.inspiration-quote {
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-}
-
 .social-links {
     display: flex;
     justify-content: center;
@@ -982,11 +816,7 @@ footer {
     margin-top: 20px;
 }
 
-.copyright p {
-    margin-bottom: 8px;
-}
-
-/* ========== MODAL / МОДАЛЬНОЕ ОКНО ========== */
+/* ========== MODAL ========== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1050,16 +880,7 @@ footer {
     color: var(--accent-color);
 }
 
-.modal-content h2 {
-    text-align: left;
-    margin-bottom: 25px;
-}
-
-.modal-content h2::after {
-    margin: 10px 0 0;
-}
-
-/* ========== MEDIA QUERIES / АДАПТИВНОСТЬ ========== */
+/* ========== RESPONSIVE ========== */
 @media (min-width: 768px) {
     h1 {
         font-size: 3rem;
@@ -1075,16 +896,6 @@ footer {
     
     .models-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .blog-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .blog-controls {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
     }
     
     .nav-links {
@@ -1113,10 +924,6 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .blog-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
     .calculator-form {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -1130,11 +937,13 @@ footer {
 </style>
 </head>
 <body>
-<!-- ========== HEADER / ШАПКА САЙТА ========== -->
+<!-- ========== HEADER ========== -->
 <header>
-    <div class="video-container">
-        <!-- Статичное изображение вместо видео -->
-        <div class="static-background"></div>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-fire-in-a-barbecue-4888-large.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
         <div class="overlay"></div>
     </div>
     
@@ -1142,19 +951,11 @@ footer {
         <a href="#" class="logo"><i class="fas fa-utensils"></i> Дёнер<span>Королевский</span></a>
         <ul class="nav-links">
             <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
-            <li class="dropdown">
-                <a href="#menu"><i class="fas fa-hamburger"></i> Меню</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#menu">Шаурма</a></li>
-                    <li><a href="#menu">Дёнеры</a></li>
-                    <li><a href="#menu">Закуски</a></li>
-                    <li><a href="#menu">Напитки</a></li>
-                </ul>
-            </li>
+            <li><a href="#menu"><i class="fas fa-hamburger"></i> Меню</a></li>
             <li><a href="#calculator"><i class="fas fa-calculator"></i> Калькулятор</a></li>
             <li><a href="#gallery"><i class="fas fa-images"></i> Галерея</a></li>
-            <li><a href="#contact"><i class="fas fa-address-book"></i> Контакты</a></li>
-            <li><a href="#" class="btn" id="contact-btn"><i class="fas fa-phone-alt"></i> Заказать</a></li>
+            <li><a href="#contact"><i class="fas fa-address-book"></i> Заказ</a></li>
+            <li><a href="#" class="btn contact-btn"><i class="fas fa-phone-alt"></i> Заказать</a></li>
         </ul>
         <div class="burger" id="burgerBtn">
             <div></div>
@@ -1165,353 +966,328 @@ footer {
     
     <div class="hero">
         <h1>Дёнер "Королевский"</h1>
-        <p>Настоящая шаурма по королевскому рецепту! Сочное мясо, свежие овощи и фирменные соусы.</p>
+        <p>Настоящая шаурма по королевскому рецепту! Сочное мясо, свежие овощи и фирменные соусы. Приготовлено на открытом огне.</p>
         <a href="#menu" class="btn">Выбрать шаурму</a>
     </div>
+</header>
 
-
-    <header>
-    <div class="video-container">
-        <!-- ВСТАВЬТЕ ВИДЕО ЗДЕСЬ -->
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-fire-in-a-barbecue-4888-large.mp4" type="video/mp4">
-            Ваш браузер не поддерживает видео.
-        </video>
-        <div class="overlay"></div>
+<!-- ========== МЕНЮ ========== -->
+<section id="menu" class="section">
+    <div class="section-title">
+        <h2>Королевское меню</h2>
+        <p>Выберите свою идеальную шаурму с нашими свежими ингредиентами</p>
     </div>
     
-    <!-- остальной код навигации -->
-    <nav>...</nav>
+    <div class="models-grid">
+        <div class="model-card">
+            <div class="model-img">
+                <img src="https://i.pinimg.com/originals/cf/dd/2e/cfdd2e941e766c51fa6113c1c17f3b81.jpg" alt="Классическая шаурма">
+            </div>
+            <div class="model-info">
+                <h3>Классическая шаурма</h3>
+                <p>Сочная курица, свежие овощи, лаваш и фирменный соус. Классика жанра!</p>
+                <div class="model-price">от 250 ₽</div>
+                <div class="ingredients-picker">
+                    <h4>Добавить ингредиенты:</h4>
+                    <div class="ingredients-options">
+                        <div class="ingredient-option active" data-product="1">Курица</div>
+                        <div class="ingredient-option" data-product="1">Говядина</div>
+                        <div class="ingredient-option" data-product="1">Свинина</div>
+                        <div class="ingredient-option" data-product="1">Сыр +50₽</div>
+                        <div class="ingredient-option" data-product="1">Грибы +30₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="model-card">
+            <div class="model-img">
+                <img src="https://static.tildacdn.com/stor6336-3463-4565-b063-653566633463/38836220.jpg" alt="Острая шаурма">
+            </div>
+            <div class="model-info">
+                <h3>Острая шаурма</h3>
+                <p>Для любителей поострее! Специи, острый перец и аджика по-кавказски.</p>
+                <div class="model-price">от 280 ₽</div>
+                <div class="ingredients-picker">
+                    <h4>Выберите остроту:</h4>
+                    <div class="ingredients-options">
+                        <div class="ingredient-option active" data-product="2">Средняя 🌶️</div>
+                        <div class="ingredient-option" data-product="2">Острая 🌶️🌶️</div>
+                        <div class="ingredient-option" data-product="2">Очень острая 🌶️🌶️🌶️</div>
+                        <div class="ingredient-option" data-product="2">Двойное мясо +100₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="model-card">
+            <div class="model-img">
+                <img src="https://cafehabibi.ru/d/vegan.jpg" alt="Вегетарианская шаурма">
+            </div>
+            <div class="model-info">
+                <h3>Вегетарианская шаурма</h3>
+                <p>Свежие овощи, грибы, сыр и соус песто. Без мяса, но очень вкусно!</p>
+                <div class="model-price">от 220 ₽</div>
+                <div class="ingredients-picker">
+                    <h4>Выберите основу:</h4>
+                    <div class="ingredients-options">
+                        <div class="ingredient-option active" data-product="3">Овощная</div>
+                        <div class="ingredient-option" data-product="3">С грибами</div>
+                        <div class="ingredient-option" data-product="3">С сыром +50₽</div>
+                        <div class="ingredient-option" data-product="3">Фалафель +70₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ТАБЛИЦА СРАВНЕНИЯ ========== -->
+<section class="performance-models section">
+    <div class="section-title">
+        <h2>Сравнение наших позиций</h2>
+        <p>Калорийность и состав наших самых популярных позиций</p>
+    </div>
     
-    <!-- hero секция -->
-    <div class="hero">...</div>
-</header>
-</header>
+    <div class="table-container">
+        <table class="performance-table">
+            <thead>
+                <tr>
+                    <th>Позиция</th>
+                    <th>Вес</th>
+                    <th>Калории</th>
+                    <th>Основной ингредиент</th>
+                    <th>Время приготовления</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Классическая шаурма</td><td>350 г</td><td>450 ккал</td><td>Курица</td><td>5-7 мин</td></tr>
+                <tr><td>Острая шаурма</td><td>380 г</td><td>520 ккал</td><td>Говядина</td><td>6-8 мин</td></tr>
+                <tr><td>Вегетарианская</td><td>320 г</td><td>380 ккал</td><td>Овощи</td><td>4-6 мин</td></tr>
+                <tr><td>Дёнер в лаваше</td><td>400 г</td><td>550 ккал</td><td>Смешанное мясо</td><td>7-9 мин</td></tr>
+                <tr><td>Дёнер в лепёшке</td><td>420 г</td><td>580 ккал</td><td>Баранина</td><td>8-10 мин</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-    <!-- ========== SECTION: МЕНЮ ========== -->
-    <section id="menu" class="section">
-        <div class="section-title">
-            <h2>Королевское меню</h2>
-            <p>Выберите свою идеальную шаурму с нашими свежими ингредиентами</p>
+<!-- ========== ГАЛЕРЕЯ ========== -->
+<section id="gallery" class="gallery-section section">
+    <div class="section-title">
+        <h2>Наша шаурмечная</h2>
+        <p>Загляните на нашу кухню и почувствуйте атмосферу вкуса</p>
+    </div>
+    
+    <div class="gallery-container">
+        <div class="gallery-slider" id="gallerySlider">
+            <div class="gallery-slide active">
+                <img src="https://avatars.mds.yandex.net/i?id=d202eda8eaa2900ea519fb7ca66a8007_l-5276461-images-thumbs&n=13" alt="Кухня">
+                <div class="slide-content">
+                    <h3>Наша чистая кухня</h3>
+                    <p>Всегда свежие ингредиенты и строгое соблюдение санитарных норм.</p>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <img src="https://cast.kz/img/Post/_%D0%B2%D0%BA%20%D0%BF%D0%BE%D0%B2%D0%B0%D1%80.jpg" alt="Приготовление">
+                <div class="slide-content">
+                    <h3>Мастер-шаурмист за работой</h3>
+                    <p>Наши повара готовят каждую шаурму с любовью и вниманием к деталям.</p>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <img src="https://arh-predmet.by/wp-content/uploads/2024/12/7.webp" alt="Интерьер">
+                <div class="slide-content">
+                    <h3>Уютный интерьер</h3>
+                    <p>Комфортная атмосфера для тех, кто предпочитает есть на месте.</p>
+                </div>
+            </div>
         </div>
         
-        <div class="models-grid">
-            <div class="model-card">
-                <div class="model-img">
-                    <img src="https://i.pinimg.com/originals/cf/dd/2e/cfdd2e941e766c51fa6113c1c17f3b81.jpg" alt="Классическая шаурма" id="product-1-img">
-                </div>
-                <div class="model-info">
-                    <h3>Классическая шаурма</h3>
-                    <p>Сочная курица, свежие овощи, лаваш и фирменный соус. Классика жанра!</p>
-                    <div class="model-price">от 250 ₽</div>
-                    
-                    <div class="ingredients-picker">
-                        <h4>Добавить ингредиенты:</h4>
-                        <div class="ingredients-options">
-                            <div class="ingredient-option active" data-product="1" title="Курица">Курица</div>
-                            <div class="ingredient-option" data-product="1" title="Говядина">Говядина</div>
-                            <div class="ingredient-option" data-product="1" title="Свинина">Свинина</div>
-                            <div class="ingredient-option" data-product="1" title="Сыр">Сыр +50₽</div>
-                            <div class="ingredient-option" data-product="1" title="Грибы">Грибы +30₽</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="model-card">
-                <div class="model-img">
-                    <img src="https://static.tildacdn.com/stor6336-3463-4565-b063-653566633463/38836220.jpg" alt="Острая шаурма" id="product-2-img">
-                </div>
-                <div class="model-info">
-                    <h3>Острая шаурма</h3>
-                    <p>Для любителей поострее! Специи, острый перец и аджика по-кавказски.</p>
-                    <div class="model-price">от 280 ₽</div>
-                    <div class="ingredients-picker">
-                        <h4>Выберите остроту:</h4>
-                        <div class="ingredients-options">
-                            <div class="ingredient-option active" data-product="2" title="Средняя">Средняя 🌶️</div>
-                            <div class="ingredient-option" data-product="2" title="Острая">Острая 🌶️🌶️</div>
-                            <div class="ingredient-option" data-product="2" title="Очень острая">Очень острая 🌶️🌶️🌶️</div>
-                            <div class="ingredient-option" data-product="2" title="Двойное мясо">Двойное мясо +100₽</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="model-card">
-                <div class="model-img">
-                    <img src="https://cafehabibi.ru/d/vegan.jpg" alt="Вегетарианская шаурма" id="product-3-img">
-                </div>
-                <div class="model-info">
-                    <h3>Вегетарианская шаурма</h3>
-                    <p>Свежие овощи, грибы, сыр и соус песто. Без мяса, но очень вкусно!</p>
-                    <div class="model-price">от 220 ₽</div>
-                    <div class="ingredients-picker">
-                        <h4>Выберите основу:</h4>
-                        <div class="ingredients-options">
-                            <div class="ingredient-option active" data-product="3" title="Овощная">Овощная</div>
-                            <div class="ingredient-option" data-product="3" title="С грибами">С грибами</div>
-                            <div class="ingredient-option" data-product="3" title="С сыром">Сырная +50₽</div>
-                            <div class="ingredient-option" data-product="3" title="Фалафель">С фалафелем +70₽</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== SECTION: ТАБЛИЦА СРАВНЕНИЯ ========== -->
-    <section class="performance-models section">
-        <div class="section-title">
-            <h2>Сравнение наших позиций</h2>
-            <p>Калорийность и состав наших самых популярных позиций</p>
+        <div class="gallery-controls">
+            <button class="gallery-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
         
-        <div class="table-container">
-            <table class="performance-table">
-                <thead>
-                    <tr>
-                        <th>Позиция</th>
-                        <th>Вес</th>
-                        <th>Калории</th>
-                        <th>Основной ингредиент</th>
-                        <th>Время приготовления</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Классическая шаурма</td><td>350 г</td><td>450 ккал</td><td>Курица</td><td>5-7 мин</td></tr>
-                    <tr><td>Острая шаурма</td><td>380 г</td><td>520 ккал</td><td>Говядина</td><td>6-8 мин</td></tr>
-                    <tr><td>Вегетарианская</td><td>320 г</td><td>380 ккал</td><td>Овощи</td><td>4-6 мин</td></tr>
-                    <tr><td>Дёнер в лаваше</td><td>400 г</td><td>550 ккал</td><td>Смешанное мясо</td><td>7-9 мин</td></tr>
-                    <tr><td>Дёнер в лепёшке</td><td>420 г</td><td>580 ккал</td><td>Баранина</td><td>8-10 мин</td></tr>
-                </tbody>
-            </table>
+        <div class="gallery-dots" id="galleryDots">
+            <span class="gallery-dot active" data-slide="0"></span>
+            <span class="gallery-dot" data-slide="1"></span>
+            <span class="gallery-dot" data-slide="2"></span>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ========== SECTION: ГАЛЕРЕЯ ========== -->
-    <section id="gallery" class="gallery-section section">
-        <div class="section-title">
-            <h2>Наша шаурмечная</h2>
-            <p>Загляните на нашу кухню и почувствуйте атмосферу вкуса</p>
-        </div>
-        
-        <div class="gallery-container">
-            <div class="gallery-slider" id="gallerySlider">
-                <div class="gallery-slide active">
-                    <img src="https://avatars.mds.yandex.net/i?id=d202eda8eaa2900ea519fb7ca66a8007_l-5276461-images-thumbs&n=13" alt="Кухня">
-                    <div class="slide-content">
-                        <h3>Наша чистая кухня</h3>
-                        <p>Всегда свежие ингредиенты и строгое соблюдение санитарных норм.</p>
-                    </div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://cast.kz/img/Post/_%D0%B2%D0%BA%20%D0%BF%D0%BE%D0%B2%D0%B0%D1%80.jpg" alt="Приготовление">
-                    <div class="slide-content">
-                        <h3>Мастер-шаурмист за работой</h3>
-                        <p>Наши повара готовят каждую шаурму с любовью и вниманием к деталям.</p>
-                    </div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://arh-predmet.by/wp-content/uploads/2024/12/7.webp" alt="Интерьер">
-                    <div class="slide-content">
-                        <h3>Уютный интерьер</h3>
-                        <p>Комфортная атмосфера для тех, кто предпочитает есть на месте.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="gallery-controls">
-                <button class="gallery-btn prev-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="gallery-btn next-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="gallery-dots" id="galleryDots">
-                <span class="gallery-dot active" data-slide="0"></span>
-                <span class="gallery-dot" data-slide="1"></span>
-                <span class="gallery-dot" data-slide="2"></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== SECTION: КАЛЬКУЛЯТОР СТОИМОСТИ ========== -->
-    <section id="calculator" class="section">
-        <div class="section-title">
-            <h2>Калькулятор заказа</h2>
-            <p>Рассчитайте стоимость вашего заказа с учётом всех дополнений</p>
-        </div>
-        
-        <div class="calculator">
-            <form class="calculator-form" id="price-calculator">
-                <div class="form-group">
-                    <label for="product">Тип шаурмы</label>
-                    <select id="product" name="product">
-                        <option value="250">Классическая (250 ₽)</option>
-                        <option value="280">Острая (280 ₽)</option>
-                        <option value="220">Вегетарианская (220 ₽)</option>
-                        <option value="350">Дёнер премиум (350 ₽)</option>
-                        <option value="300">Дёнер в лепёшке (300 ₽)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="quantity">Количество: <span id="quantityValue">2</span> шт.</label>
-                    <input type="range" id="quantity" name="quantity" min="1" max="10" value="2">
-                </div>
-                
-                <div class="form-group">
-                    <label for="delivery">Доставка</label>
-                    <select id="delivery" name="delivery">
-                        <option value="0">Самовывоз (бесплатно)</option>
-                        <option value="150">По району (150 ₽)</option>
-                        <option value="250">По городу (250 ₽)</option>
-                        <option value="400">Срочная доставка (400 ₽)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label>Дополнительно</label>
-                    <div class="options-group">
-                        <div class="option-checkbox">
-                            <input type="checkbox" id="cheese" name="cheese" value="50">
-                            <label for="cheese">Доп. сыр (+50 ₽)</label>
-                        </div>
-                        <div class="option-checkbox">
-                            <input type="checkbox" id="sauce" name="sauce" value="30">
-                            <label for="sauce">Доп. соус (+30 ₽)</label>
-                        </div>
-                        <div class="option-checkbox">
-                            <input type="checkbox" id="meat" name="meat" value="100">
-                            <label for="meat">Двойное мясо (+100 ₽)</label>
-                        </div>
-                        <div class="option-checkbox">
-                            <input type="checkbox" id="set" name="set" value="150">
-                            <label for="set">Комбо (напиток+картошка) (+150 ₽)</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="calculator-result">
-                    <h3>Итоговая стоимость</h3>
-                    <div class="total-price" id="total-price">500 ₽</div>
-                    <p class="hint">(2 шт. классической × 250 ₽ + доставка 0 ₽)</p>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- ========== SECTION: КОНТАКТНАЯ ФОРМА ========== -->
-    <section id="contact" class="section">
-        <div class="section-title">
-            <h2>Сделать заказ</h2>
-            <p>Оставьте заявку, и мы свяжемся с вами для подтверждения заказа</p>
-        </div>
-        
-        <form class="contact-form" id="contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
-            <input type="hidden" name="_gotcha" style="display:none !important">
-            
+<!-- ========== КАЛЬКУЛЯТОР СТОИМОСТИ ========== -->
+<section id="calculator" class="section">
+    <div class="section-title">
+        <h2>Калькулятор заказа</h2>
+        <p>Рассчитайте стоимость вашего заказа с учётом всех дополнений</p>
+    </div>
+    
+    <div class="calculator">
+        <form class="calculator-form" id="price-calculator">
             <div class="form-group">
-                <label for="name">Ваше имя *</label>
-                <input type="text" id="name" name="name" required minlength="2" placeholder="Иван Петров">
+                <label for="product">Тип шаурмы</label>
+                <select id="product" name="product">
+                    <option value="250">Классическая (250 ₽)</option>
+                    <option value="280">Острая (280 ₽)</option>
+                    <option value="220">Вегетарианская (220 ₽)</option>
+                    <option value="350">Дёнер премиум (350 ₽)</option>
+                    <option value="300">Дёнер в лепёшке (300 ₽)</option>
+                </select>
             </div>
             
             <div class="form-group">
-                <label for="phone">Телефон *</label>
-                <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                <label for="quantity">Количество: <span id="quantityValue">2</span> шт.</label>
+                <input type="range" id="quantity" name="quantity" min="1" max="10" value="2">
             </div>
             
             <div class="form-group">
-                <label for="address">Адрес доставки</label>
-                <input type="text" id="address" name="address" placeholder="Улица, дом, квартира">
+                <label for="delivery">Доставка</label>
+                <select id="delivery" name="delivery">
+                    <option value="0">Самовывоз (бесплатно)</option>
+                    <option value="150">По району (150 ₽)</option>
+                    <option value="250">По городу (250 ₽)</option>
+                    <option value="400">Срочная доставка (400 ₽)</option>
+                </select>
             </div>
             
-            <div class="form-group">
-                <label for="message">Ваш заказ *</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Например: 2 классические шаурмы, 1 острая, адрес доставки..." minlength="10"></textarea>
+            <div class="form-group full-width">
+                <label>Дополнительно</label>
+                <div class="options-group">
+                    <div class="option-checkbox">
+                        <input type="checkbox" id="cheese" name="cheese" value="50">
+                        <label for="cheese">Доп. сыр (+50 ₽)</label>
+                    </div>
+                    <div class="option-checkbox">
+                        <input type="checkbox" id="sauce" name="sauce" value="30">
+                        <label for="sauce">Доп. соус (+30 ₽)</label>
+                    </div>
+                    <div class="option-checkbox">
+                        <input type="checkbox" id="meat" name="meat" value="100">
+                        <label for="meat">Двойное мясо (+100 ₽)</label>
+                    </div>
+                    <div class="option-checkbox">
+                        <input type="checkbox" id="set" name="set" value="150">
+                        <label for="set">Комбо (напиток+картошка) (+150 ₽)</label>
+                    </div>
+                </div>
             </div>
             
-            <button type="submit" class="btn">Отправить заказ</button>
-            
-            <div class="form-message" id="form-message"></div>
+            <div class="calculator-result">
+                <h3>Итоговая стоимость</h3>
+                <div class="total-price" id="total-price">500 ₽</div>
+                <p class="hint">(2 шт. классической × 250 ₽ + доставка 0 ₽)</p>
+            </div>
         </form>
-    </section>
+    </div>
+</section>
 
-    <!-- ========== FOOTER / ПОДВАЛ САЙТА ========== -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"><i class="fas fa-utensils"></i> Дёнер<span>Королевский</span></div>
-            <ul class="footer-links">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#menu">Меню</a></li>
-                <li><a href="#calculator">Калькулятор</a></li>
-                <li><a href="#gallery">Галерея</a></li>
-                <li><a href="#contact">Заказ</a></li>
-            </ul>
-            <div class="quote-section">
-                <p class="inspiration-quote">
-                    "Лучшая шаурма в городе! Сочное мясо, свежие овощи и идеальные соусы. Рекомендую!"
-                </p>
-            </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-vk"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <div class="copyright">
-                <p><i class="fas fa-clock"></i> Ежедневно с 10:00 до 23:00</p>
-                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
-                <p>© 2024 Дёнер "Королевский". Все права защищены.</p>
-            </div>
+<!-- ========== КОНТАКТНАЯ ФОРМА ========== -->
+<section id="contact" class="section">
+    <div class="section-title">
+        <h2>Сделать заказ</h2>
+        <p>Оставьте заявку, и мы свяжемся с вами для подтверждения заказа</p>
+    </div>
+    
+    <form class="contact-form" id="contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="_gotcha" style="display:none !important">
+        
+        <div class="form-group">
+            <label for="name">Ваше имя *</label>
+            <input type="text" id="name" name="name" required minlength="2" placeholder="Иван Петров">
         </div>
+        
+        <div class="form-group">
+            <label for="phone">Телефон *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Адрес доставки</label>
+            <input type="text" id="address" name="address" placeholder="Улица, дом, квартира">
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Ваш заказ *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Например: 2 классические шаурмы, 1 острая, адрес доставки..." minlength="10"></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Отправить заказ</button>
+        
+        <div class="form-message" id="form-message"></div>
+    </form>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo"><i class="fas fa-utensils"></i> Дёнер<span>Королевский</span></div>
+        <ul class="footer-links">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#calculator">Калькулятор</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contact">Заказ</a></li>
+        </ul>
+        <div class="quote-section">
+            <p class="inspiration-quote">
+                "Лучшая шаурма в городе! Сочное мясо, свежие овощи и идеальные соусы. Рекомендую!"
+            </p>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-vk"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="copyright">
+            <p><i class="fas fa-clock"></i> Ежедневно с 10:00 до 23:00</p>
+            <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+            <p>© 2024 Дёнер "Королевский". Все права защищены.</p>
+        </div>
+    </div>
 </footer>
 
-    <!-- ========== MODAL / МОДАЛЬНОЕ ОКНО ========== -->
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal" id="contact-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h2>Быстрый заказ</h2>
-            <form id="modal-contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
-                <input type="hidden" name="_gotcha" style="display:none !important">
-                <div class="form-group">
-                    <label for="modal-name">Ваше имя *</label>
-                    <input type="text" id="modal-name" name="name" required minlength="2">
-                </div>
-                <div class="form-group">
-                    <label for="modal-phone">Телефон *</label>
-                    <input type="tel" id="modal-phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="modal-order">Что вы хотите заказать? *</label>
-                    <textarea id="modal-order" name="order" rows="3" required minlength="5"></textarea>
-                </div>
-                <button type="submit" class="btn">Заказать сейчас</button>
-                <div class="form-message" id="modal-form-message"></div>
-            </form>
-        </div>
+<!-- ========== MODAL ========== -->
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="modal" id="contact-modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2>Быстрый заказ</h2>
+        <form id="modal-contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
+            <input type="hidden" name="_gotcha" style="display:none !important">
+            <div class="form-group">
+                <label for="modal-name">Ваше имя *</label>
+                <input type="text" id="modal-name" name="name" required minlength="2">
+            </div>
+            <div class="form-group">
+                <label for="modal-phone">Телефон *</label>
+                <input type="tel" id="modal-phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="modal-order">Что вы хотите заказать? *</label>
+                <textarea id="modal-order" name="order" rows="3" required minlength="5"></textarea>
+            </div>
+            <button type="submit" class="btn">Заказать сейчас</button>
+            <div class="form-message" id="modal-form-message"></div>
+        </form>
     </div>
+</div>
 
 <script>
-// ========== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И СОСТОЯНИЕ ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Шаурмечная "Дёнер Королевский" загружена!');
-    
-    let currentSlide = 0;
-    const totalSlides = document.querySelectorAll('.gallery-slide').length;
     
     // ========== МОБИЛЬНОЕ МЕНЮ ==========
     const burgerBtn = document.getElementById('burgerBtn');
     const mobileMenu = document.createElement('div');
     const mobileOverlay = document.createElement('div');
     
-    function initMobileMenu() {
-        if (!burgerBtn) return;
-        
+    if (burgerBtn) {
         mobileMenu.className = 'mobile-menu';
         mobileMenu.innerHTML = `
             <button class="menu-close" id="menuClose"><i class="fas fa-times"></i></button>
@@ -1564,96 +1340,73 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ========== ВЫБОР ИНГРЕДИЕНТОВ ==========
-    function initIngredientPickers() {
-        const ingredientOptions = document.querySelectorAll('.ingredient-option');
-        
-        console.log('Найдено элементов для выбора ингредиентов:', ingredientOptions.length);
-        
-        ingredientOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product');
-                
-                console.log('Клик по ингредиенту:', productId);
-                
-                const parent = this.closest('.ingredients-options');
-                if (parent) {
-                    if (this.textContent.includes('Курица') || this.textContent.includes('Говядина') || 
-                        this.textContent.includes('Свинина') || this.textContent.includes('Овощная') ||
-                        this.textContent.includes('С грибами') || this.textContent.includes('Средняя') ||
-                        this.textContent.includes('Острая') || this.textContent.includes('Очень острая')) {
-                        
-                        parent.querySelectorAll('.ingredient-option').forEach(opt => {
-                            if (opt.textContent.includes('Курица') || opt.textContent.includes('Говядина') || 
-                                opt.textContent.includes('Свинина') || opt.textContent.includes('Овощная') ||
-                                opt.textContent.includes('С грибами') || opt.textContent.includes('Средняя') ||
-                                opt.textContent.includes('Острая') || opt.textContent.includes('Очень острая')) {
-                                opt.classList.remove('active');
-                            }
-                        });
-                    }
+    const ingredientOptions = document.querySelectorAll('.ingredient-option');
+    
+    ingredientOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const parent = this.closest('.ingredients-options');
+            if (parent) {
+                const text = this.textContent;
+                if (text.includes('Курица') || text.includes('Говядина') || 
+                    text.includes('Свинина') || text.includes('Овощная') ||
+                    text.includes('С грибами') || text.includes('Средняя') ||
+                    text.includes('Острая') || text.includes('Очень острая')) {
                     
-                    this.classList.toggle('active');
-                    
-                    updateCalculator();
+                    parent.querySelectorAll('.ingredient-option').forEach(opt => {
+                        if (opt.textContent.includes('Курица') || opt.textContent.includes('Говядина') || 
+                            opt.textContent.includes('Свинина') || opt.textContent.includes('Овощная') ||
+                            opt.textContent.includes('С грибами') || opt.textContent.includes('Средняя') ||
+                            opt.textContent.includes('Острая') || opt.textContent.includes('Очень острая')) {
+                            opt.classList.remove('active');
+                        }
+                    });
                 }
-            });
+                
+                this.classList.toggle('active');
+                updateCalculator();
+            }
         });
-    }
+    });
     
     // ========== СЛАЙДЕР ГАЛЕРЕИ ==========
-    function initGallerySlider() {
-        const slider = document.querySelector('.gallery-slider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dots = document.querySelectorAll('.gallery-dot');
-        
-        if (!slider || !prevBtn || !nextBtn) return;
-        
-        function updateSlider() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.gallery-slide');
+    const totalSlides = slides.length;
+    const slider = document.getElementById('gallerySlider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    function updateSlider() {
+        if (slider) {
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
             
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
         }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
-        
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-        
-        function goToSlide(slideIndex) {
-            currentSlide = slideIndex;
-            updateSlider();
-        }
-        
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-        
-        dots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                const slideIndex = parseInt(this.getAttribute('data-slide'));
-                goToSlide(slideIndex);
-            });
-        });
-        
-        let autoSlideInterval = setInterval(nextSlide, 5000);
-        
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
-        });
-        
-        slider.addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        });
-        
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
         updateSlider();
     }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const slideIndex = parseInt(this.getAttribute('data-slide'));
+            currentSlide = slideIndex;
+            updateSlider();
+        });
+    });
     
     // ========== КАЛЬКУЛЯТОР СТОИМОСТИ ==========
     function initCalculator() {
@@ -1663,8 +1416,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const deliverySelect = document.getElementById('delivery');
         const totalPriceElement = document.getElementById('total-price');
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        
-        if (!productSelect || !quantitySlider || !deliverySelect || !totalPriceElement) return;
         
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -1692,8 +1443,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const totalPrice = (productPrice * quantity) + deliveryCost + extraCost;
             
-            quantityValue.textContent = quantity;
-            totalPriceElement.textContent = formatNumber(totalPrice) + ' ₽';
+            if (quantityValue) quantityValue.textContent = quantity;
+            if (totalPriceElement) totalPriceElement.textContent = formatNumber(totalPrice) + ' ₽';
             
             const productText = productSelect.options[productSelect.selectedIndex].text.split(' (')[0];
             const deliveryText = deliverySelect.options[deliverySelect.selectedIndex].text.split(' (')[0];
@@ -1709,186 +1460,134 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        function updateCalculator() {
+        if (productSelect && quantitySlider && deliverySelect && totalPriceElement) {
+            productSelect.addEventListener('change', calculateTotal);
+            quantitySlider.addEventListener('input', calculateTotal);
+            deliverySelect.addEventListener('change', calculateTotal);
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', calculateTotal);
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('ingredient-option')) {
+                    setTimeout(calculateTotal, 100);
+                }
+            });
+            
             calculateTotal();
         }
-        
-        productSelect.addEventListener('change', calculateTotal);
-        quantitySlider.addEventListener('input', calculateTotal);
-        deliverySelect.addEventListener('change', calculateTotal);
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', calculateTotal);
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('ingredient-option')) {
-                setTimeout(calculateTotal, 100);
-            }
-        });
-        
-        calculateTotal();
-        
-        window.updateCalculator = updateCalculator;
     }
     
- 
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentCategory = this.getAttribute('data-category');
-                displayedPosts = 3;
-                displayPosts();
-            });
-        });
-        
-        if (searchInput && searchBtn) {
-            searchBtn.addEventListener('click', function() {
-                currentSearch = searchInput.value;
-                displayedPosts = 3;
-                displayPosts();
-            });
-            
-            searchInput.addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    currentSearch = searchInput.value;
-                    displayedPosts = 3;
-                    displayPosts();
-                }
-            });
-        }
-        
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', function() {
-                displayedPosts += 3;
-                displayPosts();
-            });
-        }
-        
-        displayPosts();
-    }
+    initCalculator();
     
     // ========== МОДАЛЬНОЕ ОКНО И ФОРМЫ ==========
-    function initModalAndForms() {
-        const contactBtn = document.getElementById('contact-btn');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const contactModal = document.getElementById('contact-modal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const contactForm = document.getElementById('contact-form');
-        const modalContactForm = document.getElementById('modal-contact-form');
-        
-        function openModal() {
-            if (modalOverlay && contactModal) {
-                modalOverlay.classList.add('active');
-                contactModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+    const contactBtn = document.querySelector('.contact-btn');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const contactModal = document.getElementById('contact-modal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const contactForm = document.getElementById('contact-form');
+    const modalContactForm = document.getElementById('modal-contact-form');
+    
+    function openModal() {
+        if (modalOverlay && contactModal) {
+            modalOverlay.classList.add('active');
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-        
-        function closeModal() {
-            if (modalOverlay && contactModal) {
-                modalOverlay.classList.remove('active');
-                contactModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+    }
+    
+    function closeModal() {
+        if (modalOverlay && contactModal) {
+            modalOverlay.classList.remove('active');
+            contactModal.classList.remove('active');
+            document.body.style.overflow = '';
         }
-        
-        if (contactBtn) {
-            contactBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal();
-            });
+    }
+    
+    if (contactBtn) {
+        contactBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+        });
+    }
+    
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+    
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeModal);
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && contactModal && contactModal.classList.contains('active')) {
+            closeModal();
         }
+    });
+    
+    function handleFormSubmit(e, form, messageElementId) {
+        e.preventDefault();
         
-        if (closeModalBtn) {
-            closeModalBtn.addEventListener('click', closeModal);
-        }
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        const messageElement = document.getElementById(messageElementId);
         
-        if (modalOverlay) {
-            modalOverlay.addEventListener('click', closeModal);
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
-                closeModal();
+        let isValid = true;
+        form.querySelectorAll('[required]').forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = '#F44336';
+            } else {
+                field.style.borderColor = '';
             }
         });
         
-        function handleFormSubmit(e, form, messageElementId) {
-            e.preventDefault();
+        if (!isValid) {
+            showMessage(messageElement, 'Пожалуйста, заполните все обязательные поля.', 'error');
+            return;
+        }
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+            showMessage(messageElement, 'Спасибо! Ваш заказ принят. Мы свяжемся с вами в течение 15 минут.', 'success');
+            form.reset();
             
-            const formData = new FormData(form);
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            const messageElement = document.getElementById(messageElementId);
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
             
-            let isValid = true;
-            form.querySelectorAll('[required]').forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#F44336';
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-            
-            if (!isValid) {
-                showMessage(messageElement, 'Пожалуйста, заполните все обязательные поля.', 'error');
-                return;
+            if (form === modalContactForm) {
+                setTimeout(closeModal, 2000);
             }
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showMessage(messageElement, 'Спасибо! Ваш заказ принят. Мы свяжемся с вами в течение 15 минут.', 'success');
-                form.reset();
-                
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-                
-                if (form === modalContactForm) {
-                    setTimeout(closeModal, 2000);
-                }
-            }, 1500);
-        }
-        
-        function showMessage(element, text, type) {
-            if (!element) return;
-            
-            element.textContent = text;
-            element.className = `form-message ${type}`;
-            
-            setTimeout(() => {
-                element.className = 'form-message';
-            }, 5000);
-        }
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                handleFormSubmit(e, this, 'form-message');
-            });
-        }
-        
-        if (modalContactForm) {
-            modalContactForm.addEventListener('submit', function(e) {
-                handleFormSubmit(e, this, 'modal-form-message');
-            });
-        }
-        
-        console.log('Для работы форм замените "YhinEAy4WWS" в атрибуте action на ваш ключ от Formcarry.');
+        }, 1500);
     }
     
-    // ========== ИНИЦИАЛИЗАЦИЯ ВСЕХ МОДУЛЕЙ ==========
-    initMobileMenu();
-    initIngredientPickers();
-    initGallerySlider();
-    initCalculator();
-    initBlog();
-    initModalAndForms();
+    function showMessage(element, text, type) {
+        if (!element) return;
+        
+        element.textContent = text;
+        element.className = `form-message ${type}`;
+        
+        setTimeout(() => {
+            element.className = 'form-message';
+        }, 5000);
+    }
     
-    // ========== ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ==========
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            handleFormSubmit(e, this, 'form-message');
+        });
+    }
     
+    if (modalContactForm) {
+        modalContactForm.addEventListener('submit', function(e) {
+            handleFormSubmit(e, this, 'modal-form-message');
+        });
+    }
+    
+    // ========== ПЛАВНАЯ ПРОКРУТКА ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -1907,6 +1606,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // ========== ОБНОВЛЕНИЕ ГОДА ==========
     const yearElements = document.querySelectorAll('.copyright');
     yearElements.forEach(el => {
         if (el.textContent.includes('2024')) {
@@ -1915,125 +1615,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    console.log('Шаурмечная "Дёнер Королевский" успешно инициализирована!');
-});
-
-// Решение для Formcarry на вашем сайте
-document.addEventListener('DOMContentLoaded', function() {
+    // ========== АВТОСЛАЙДЕР ==========
+    let autoSlideInterval = setInterval(nextSlide, 5000);
     
-    // Обработка ОСНОВНОЙ формы
-    const mainForm = document.getElementById('contact-form');
-    if (mainForm) {
-        mainForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            sendFormToFormcarry(this, 'form-message');
+    if (slider) {
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(nextSlide, 5000);
         });
     }
     
-    // Обработка МОДАЛЬНОЙ формы
-    const modalForm = document.getElementById('modal-contact-form');
-    if (modalForm) {
-        modalForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            sendFormToFormcarry(this, 'modal-form-message');
-        });
-    }
-    
-    // Функция отправки
-    async function sendFormToFormcarry(form, messageId) {
-        const formData = new FormData(form);
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const messageDiv = document.getElementById(messageId);
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = '⏳ Отправка...';
-        submitBtn.disabled = true;
-        if (messageDiv) {
-            messageDiv.textContent = 'Отправляем заказ...';
-            messageDiv.className = 'form-message sending';
-        }
-        
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            const result = await response.json();
-            
-            if (response.ok && result.code === 200) {
-                if (messageDiv) {
-                    messageDiv.textContent = '✅ Заказ успешно отправлен! Мы перезвоним вам в течение 15 минут.';
-                    messageDiv.className = 'form-message success';
-                }
-                form.reset();
-                
-                const modal = form.closest('.modal');
-                if (modal) {
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 2000);
-                }
-            } else {
-                if (messageDiv) {
-                    messageDiv.textContent = '❌ Ошибка: ' + (result.message || 'Попробуйте еще раз');
-                    messageDiv.className = 'form-message error';
-                }
-            }
-        } catch (error) {
-            if (messageDiv) {
-                messageDiv.textContent = '❌ Ошибка сети. Проверьте соединение.';
-                messageDiv.className = 'form-message error';
-            }
-            console.error('Formcarry ошибка:', error);
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            
-            if (messageDiv) {
-                setTimeout(() => {
-                    messageDiv.textContent = '';
-                    messageDiv.className = 'form-message';
-                }, 5000);
-            }
-        }
-    }
-});
-    // В конец JavaScript файла (перед закрывающим </script>)
-document.addEventListener('DOMContentLoaded', function() {
-    // Проверяем, загрузилось ли YouTube видео
-    setTimeout(function() {
-        const iframe = document.querySelector('.youtube-video iframe');
-        const backupImage = document.querySelector('.backup-image');
-        
-        // Если YouTube не загрузился через 3 секунды, показываем запасное изображение
-        if (iframe && backupImage && iframe.clientHeight === 0) {
-            console.log('YouTube не загрузился, показываем запасное изображение');
-            document.querySelector('.youtube-video').style.display = 'none';
-            backupImage.style.display = 'block';
-        }
-    }, 3000);
-    
-    // Альтернативный вариант: показываем кнопку для включения звука
-    const heroSection = document.querySelector('.hero');
-    const soundButton = document.createElement('button');
-    soundButton.innerHTML = '<i class="fas fa-volume-mute"></i> Включить звук видео';
-    soundButton.style.cssText = 'position: absolute; bottom: 20px; right: 20px; padding: 10px 20px; background: rgba(0,0,0,0.6); color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; cursor: pointer; z-index: 100; font-size: 0.9rem; backdrop-filter: blur(5px);';
-    soundButton.addEventListener('click', function() {
-        const iframe = document.querySelector('.youtube-video iframe');
-        if (iframe) {
-            // Пытаемся включить звук (на YouTube это не всегда работает из-за политики)
-            iframe.src = iframe.src.replace('mute=1', 'mute=0');
-            this.style.display = 'none';
-        }
-    });
-    
-    if (heroSection) {
-        heroSection.appendChild(soundButton);
-    }
+    updateSlider();
 });
 </script>
 </body>
