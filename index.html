@@ -1193,7 +1193,9 @@ footer {
         <p>Оставьте заявку, и мы свяжемся с вами для подтверждения заказа</p>
     </div>
     
+    <!-- ФОРМА ИЗ ПЕРВОГО КОДА (РАБОЧАЯ) -->
     <form class="contact-form" id="contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
+        <!-- Скрытое поле для защиты от спам-ботов -->
         <input type="hidden" name="_gotcha" style="display:none !important">
         
         <div class="form-group">
@@ -1202,22 +1204,18 @@ footer {
         </div>
         
         <div class="form-group">
-            <label for="phone">Телефон *</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
-        </div>
-        
-        <div class="form-group">
-            <label for="address">Адрес доставки</label>
-            <input type="text" id="address" name="address" placeholder="Улица, дом, квартира">
+            <label for="email">Электронная почта *</label>
+            <input type="email" id="email" name="email" required placeholder="example@mail.ru">
         </div>
         
         <div class="form-group">
             <label for="message">Ваш заказ *</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Например: 2 классические шаурмы, 1 острая, адрес доставки..." minlength="10"></textarea>
+            <textarea id="message" name="message" rows="5" required placeholder="Напишите ваш заказ (например: 2 классические шаурмы, 1 острая, адрес доставки...)" minlength="10"></textarea>
         </div>
         
         <button type="submit" class="btn">Отправить заказ</button>
         
+        <!-- Сюда будет выводиться сообщение об успехе/ошибке после отправки -->
         <div class="form-message" id="form-message"></div>
     </form>
 </section>
@@ -1242,11 +1240,9 @@ footer {
             <a href="#"><i class="fab fa-vk"></i></a>
             <a href="#"><i class="fab fa-telegram"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
         <div class="copyright">
             <p><i class="fas fa-clock"></i> Ежедневно с 10:00 до 23:00</p>
-            <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
             <p>© 2024 Дёнер "Королевский". Все права защищены.</p>
         </div>
     </div>
@@ -1258,6 +1254,7 @@ footer {
     <div class="modal-content">
         <span class="close-modal" id="closeModal">&times;</span>
         <h2>Быстрый заказ</h2>
+        <!-- ФОРМА ИЗ ПЕРВОГО КОДА ДЛЯ МОДАЛЬНОГО ОКНА -->
         <form id="modal-contact-form" action="https://formcarry.com/s/YhinEAy4WWS" method="POST" accept-charset="UTF-8">
             <input type="hidden" name="_gotcha" style="display:none !important">
             <div class="form-group">
@@ -1265,12 +1262,12 @@ footer {
                 <input type="text" id="modal-name" name="name" required minlength="2">
             </div>
             <div class="form-group">
-                <label for="modal-phone">Телефон *</label>
-                <input type="tel" id="modal-phone" name="phone" required>
+                <label for="modal-email">Электронная почта *</label>
+                <input type="email" id="modal-email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="modal-order">Что вы хотите заказать? *</label>
-                <textarea id="modal-order" name="order" rows="3" required minlength="5"></textarea>
+                <label for="modal-message">Ваш заказ *</label>
+                <textarea id="modal-message" name="message" rows="4" required minlength="10" placeholder="Что вы хотите заказать?"></textarea>
             </div>
             <button type="submit" class="btn">Заказать сейчас</button>
             <div class="form-message" id="modal-form-message"></div>
@@ -1480,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initCalculator();
     
-    // ========== МОДАЛЬНОЕ ОКНО И ФОРМЫ ==========
+    // ========== МОДАЛЬНОЕ ОКНО И ФОРМЫ (ИЗ ПЕРВОГО КОДА) ==========
     const contactBtn = document.querySelector('.contact-btn');
     const modalOverlay = document.getElementById('modalOverlay');
     const contactModal = document.getElementById('contact-modal');
@@ -1525,6 +1522,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Функция обработки отправки формы из первого кода
     function handleFormSubmit(e, form, messageElementId) {
         e.preventDefault();
         
@@ -1575,6 +1573,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
+    // Подключаем обработчики для форм
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             handleFormSubmit(e, this, 'form-message');
@@ -1629,6 +1628,102 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     updateSlider();
+});
+
+// ========== ФОРМА ДЛЯ FORMCARRY (ИЗ ПЕРВОГО КОДА) ==========
+// Решение для Formcarry на вашем сайте
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Обработка ОСНОВНОЙ формы
+    const mainForm = document.getElementById('contact-form');
+    if (mainForm) {
+        mainForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            sendFormToFormcarry(this, 'form-message');
+        });
+    }
+    
+    // Обработка МОДАЛЬНОЙ формы
+    const modalForm = document.getElementById('modal-contact-form');
+    if (modalForm) {
+        modalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            sendFormToFormcarry(this, 'modal-form-message');
+        });
+    }
+    
+    // Функция отправки
+    async function sendFormToFormcarry(form, messageId) {
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const messageDiv = document.getElementById(messageId);
+        const originalText = submitBtn.textContent;
+        
+        // Показываем загрузку
+        submitBtn.textContent = '⏳ Отправка...';
+        submitBtn.disabled = true;
+        if (messageDiv) {
+            messageDiv.textContent = 'Отправляем сообщение...';
+            messageDiv.className = 'form-message sending';
+        }
+        
+        try {
+            // Отправка на Formcarry
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok && result.code === 200) {
+                // Успех
+                if (messageDiv) {
+                    messageDiv.textContent = '✅ Сообщение успешно отправлено!';
+                    messageDiv.className = 'form-message success';
+                }
+                form.reset();
+                
+                // Закрываем модальное окно, если оно есть
+                const modal = form.closest('.modal');
+                if (modal) {
+                    setTimeout(() => {
+                        document.getElementById('modalOverlay').classList.remove('active');
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }, 2000);
+                }
+            } else {
+                // Ошибка Formcarry
+                if (messageDiv) {
+                    messageDiv.textContent = '❌ Ошибка: ' + (result.message || 'Попробуйте еще раз');
+                    messageDiv.className = 'form-message error';
+                }
+            }
+        } catch (error) {
+            // Сетевая ошибка
+            if (messageDiv) {
+                messageDiv.textContent = '❌ Ошибка сети. Проверьте соединение.';
+                messageDiv.className = 'form-message error';
+            }
+            console.error('Formcarry ошибка:', error);
+        } finally {
+            // Восстанавливаем кнопку
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            
+            // Автоочистка сообщения через 5 секунд
+            if (messageDiv) {
+                setTimeout(() => {
+                    messageDiv.textContent = '';
+                    messageDiv.className = 'form-message';
+                }, 5000);
+            }
+        }
+    }
 });
 </script>
 </body>
